@@ -189,7 +189,7 @@ resource "aws_lb" "albtg" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [ aws_security_group.freedom.id ]
-  subnets            = [ module.vpc.subnet_public1_id , module.vpc.subnet_public2_id , module.vpc.subnet_public3_id ]
+  subnets            = module.vpc.public_subnet
 
   enable_deletion_protection = false
   depends_on = [ aws_lb_target_group.tgone ]
@@ -231,7 +231,7 @@ resource "aws_lb_listener_rule" "rule-one" {
   }
   condition {
     host_header {
-      values = [ "${var.project}.vyjithks.tk" ]
+      values = [ "${var.project}.devanandts.tk" ]
      }
   }
 }
@@ -263,7 +263,7 @@ resource "aws_autoscaling_group" "asg-one" {
   min_size                = var.count_asgone
   max_size                = var.count_asgone
   desired_capacity        = var.count_asgone
-  vpc_zone_identifier     = [ module.vpc.subnet_public1_id , module.vpc.subnet_public2_id , module.vpc.subnet_public3_id ]
+  vpc_zone_identifier     = module.vpc.public_subnet
   target_group_arns       = [ aws_lb_target_group.tgone.arn ]
   tag {
     key = "Name"
