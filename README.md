@@ -96,14 +96,12 @@ terraform init
 **Lets start with main.tf file, the details are below**
 
 ~~~sh
-resource "aws_vpc" "main" {
-   cidr_block = var.vpc_cidr
-   instance_tenancy = "default"
-    enable_dns_support = true
-    enable_dns_hostnames = true
-    tags = {
-        Name = var.project
-    }
+module "vpc" {
+
+  source   = ""
+  vpc_cidr = var.vpc_cidr
+  project  = var.project
+
 }
 ~~~
 
