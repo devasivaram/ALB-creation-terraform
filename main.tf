@@ -3,7 +3,7 @@
 # --------------------------------------------------
 module "vpc" {
 
-  source   = "/var/terraform/vpc/"
+  source   = "git@github.com:devasivaram/aws_vpc_module.git"
   vpc_cidr = var.cidr
   project  = var.project
 
