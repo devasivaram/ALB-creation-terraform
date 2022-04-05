@@ -98,7 +98,7 @@ terraform init
 ~~~sh
 module "vpc" {
 
-  source   = ""
+  source   = "git@github.com:devasivaram/aws_vpc_module.git"
   vpc_cidr = var.vpc_cidr
   project  = var.project
 
